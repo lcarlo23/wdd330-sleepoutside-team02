@@ -21,3 +21,16 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// add a product to the cart stored in localStorage
+export function addProductToCart(product) {
+  let cart = getLocalStorage("so-cart");
+
+  if (!cart) {
+    cart = [];
+  }
+
+  cart.push(product);
+  setLocalStorage("so-cart", cart);
+}
+
