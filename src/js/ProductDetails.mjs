@@ -17,9 +17,9 @@ export default class ProductDetails {
         document.getElementById('addToCart')
             .addEventListener('click', this.addToCart.bind(this));
     }
-    addToCart(product) {
+    addToCart() {
         const cart = getLocalStorage("so-cart") || [];
-        cart.push(product);
+        cart.push(this.product);
         setLocalStorage("so-cart", cart);
     }
     renderProductDetails(product) {
