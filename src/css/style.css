@@ -21,13 +21,10 @@
 }
 
 body {
+  width: 100%;
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
-}
-
-img {
-  max-width: 100%;
 }
 
 header {
@@ -41,59 +38,62 @@ p {
 }
 
 .logo {
-  line-height: 60px;
-  width: 245px;
-  overflow: hidden;
   display: flex;
+  margin-left: 25px;
+  height: 90px;
+  width: 300px;
+  overflow: hidden;
   font-size: 30px;
   text-align: right;
   font-family: var(--font-headline);
 }
-
-.logo img {
-  width: 60px;
-  height: 60px;
+  .logo img {
+    /*enlarge logo image*/
+    scale: 1.5;
+    width: 90px;
+    height: 90px;
+    margin-right: 0.25em; 
+    margin-left: 0.25em;  
 }
-
 .logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25px;
+  font-size: 44px;
   text-decoration: none;
   color: var(--font-body);
 }
+/* cart formatting */
 
+.cart {
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+}
+
+.cart svg {
+  /*enlarge cart icon*/
+  width: 90px;
+  height: 90px;
+  fill: var(--dark-grey);
+}
+.cart:hover svg {
+  fill: gray;
+}
+/* end cart formatting */
+/* hero section */
+.divider {
+  border-bottom: 2px solid var(--primary-color);
+}
 .hero {
   position: relative;
 }
-
-.hero .logo {
-  position: absolute;
-  left: calc(50% - 60px);
-  bottom: -15px;
-  background-color: white;
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-
-.logo--square {
-  font-size: var(--small-font);
-  width: 110px;
-  height: 80px;
-
-  flex-direction: column;
-  align-items: flex-end;
-  box-shadow: 1px 1px 4px var(--light-grey);
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-}
-
-.logo--square img {
-  width: 90px;
-  height: 90px;
-  margin-top: -1.3em;
-}
-
-.logo--square > div {
-  margin-top: -1.7em;
-}
-
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -109,48 +109,28 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
-
-.divider {
-  border-bottom: 2px solid var(--primary-color);
-}
-
-/* End utility classes */
-
-/* Cart icon styles */
-.cart {
-  padding-top: 1em;
-  position: relative;
-  text-align: center;
-}
-
-.cart svg {
-  width: 25px;
-}
-
-.cart:hover svg {
-  fill: gray;
-}
-
 /* End cart icon styles */
-
 .mission {
-  position: absolute;
+  /* Locate mission paragraph below hero image */
+  position: relative;
   top: 1rem;
   left: 0;
   right: 0;
   line-height: 1.3;
   width: 100%;
   background-color: var(--dark-grey);
-  color: var(--light-grey);
-  opacity: 0.8;
+  
 }
-
 .mission p {
   margin: 0 auto;
-  width: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 34px;
+  padding: 0.5rem;
+  opacity: 0.8;
+  width: 100%;
   text-align: center;
 }
-
 .products {
   margin-top: 2rem;
   padding: 1rem;
