@@ -191,6 +191,29 @@ button {
   font-size: 1em;
 }
 
+.product-card__discount {
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount-tag {
+  color: red;
+  font-weight: 900;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.discount-price {
+  font-weight: 700;
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
 /* End product list card */
 
 .product-detail {
