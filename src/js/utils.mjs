@@ -1,3 +1,4 @@
+// utils.mjs
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -20,4 +21,18 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+/*Make a new function in the utils.mjs file called renderListWithTemplate 
+and export it. It should receive five (5) arguments: templateFn, parentElement,
+ list, position, and clear.*/
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = true,
+) {
+  if (clear) parentElement.innerHTML = "";
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }

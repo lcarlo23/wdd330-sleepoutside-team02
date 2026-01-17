@@ -1,3 +1,4 @@
+// src/js/ProductData.mjs
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -9,7 +10,7 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    this.path = "/src/public/json/" + category + ".json";
   }
   getData() {
     return fetch(this.path)

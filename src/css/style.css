@@ -157,6 +157,12 @@ button {
   max-width: 250px;
 }
 
+/* Ensure product images do not exceed their container */
+.product-card img {
+  width: 100%;
+  height: auto;
+}
+
 .product-card h2,
 .product-card h3,
 .product-card p {
