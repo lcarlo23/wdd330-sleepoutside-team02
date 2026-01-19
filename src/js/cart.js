@@ -11,11 +11,9 @@ function renderCartContents() {
     return;
   }
 
-  // Render cart items
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   productList.innerHTML = htmlItems.join("");
 
-  // Show cart total
   renderCartTotal(cartItems);
 }
 
@@ -36,7 +34,10 @@ function cartItemTemplate(item) {
 function renderCartTotal(cartItems) {
   const cartFooter = document.querySelector(".cart-footer");
 
-  const cartTotal = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+  const cartTotal = cartItems.reduce(
+    (sum, item) => sum + item.FinalPrice,
+    0
+  );
 
   const formattedTotal = cartTotal.toLocaleString("en-US", {
     style: "currency",

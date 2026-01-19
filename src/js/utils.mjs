@@ -2,17 +2,17 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -22,15 +22,24 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-// add a product to the cart stored in localStorage
-export function addProductToCart(product) {
-  let cart = getLocalStorage("so-cart");
-
-  if (!cart) {
-    cart = [];
-  }
-
-  cart.push(product);
-  setLocalStorage("so-cart", cart);
+// Returns a parameter from the URL when requested
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
 }
 
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  const newList = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, newList.join(""));
+}
