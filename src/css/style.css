@@ -294,7 +294,10 @@ footer {
   margin-top: 1.5rem;
   padding: 1rem;
   border-top: 2px solid var(--primary-color);
+}
 
+/* only apply layout when visible */
+.cart-footer:not(.hide) {
   display: grid;
   grid-template-columns: 25% auto 15%;
   align-items: center;
