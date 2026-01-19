@@ -1,5 +1,23 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
+/*
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartCountEl = document.querySelector(".cart-count");
 
+  if (!cartCountEl) return;
+
+  let itemCount = cartItems.length;
+
+  if (itemCount > 0) {
+    cartCountEl.textContent = itemCount;
+    cartCountEl.style.display = "flex";
+  } else {
+    cartCountEl.style.display = "none";
+  }
+}
+
+*/
 export default class ProductDetails {
     constructor(productId, dataSource) {
         this.productId = productId;
@@ -21,7 +39,9 @@ export default class ProductDetails {
         const cart = getLocalStorage("so-cart") || [];
         cart.push(this.product);
         setLocalStorage("so-cart", cart);
+        updateCartCount();
     }
+   
     renderProductDetails(product) {
         const brand = document.querySelector(".product-detail h3");
         const name = document.querySelector(".product-detail h2");
@@ -41,3 +61,5 @@ export default class ProductDetails {
         button.dataset.id = product.Id;
     }
 }
+
+updateCartCount();
