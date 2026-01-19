@@ -29,7 +29,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-
-//updateCartCount();
-
 updateCartCount();
