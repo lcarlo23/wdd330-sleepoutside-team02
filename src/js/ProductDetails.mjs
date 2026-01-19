@@ -1,23 +1,6 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import { updateCartCount } from "./utils.mjs";
-/*
-export function updateCartCount() {
-  const cartItems = getLocalStorage("so-cart") || [];
-  const cartCountEl = document.querySelector(".cart-count");
 
-  if (!cartCountEl) return;
-
-  let itemCount = cartItems.length;
-
-  if (itemCount > 0) {
-    cartCountEl.textContent = itemCount;
-    cartCountEl.style.display = "flex";
-  } else {
-    cartCountEl.style.display = "none";
-  }
-}
-
-*/
 export default class ProductDetails {
     constructor(productId, dataSource) {
         this.productId = productId;

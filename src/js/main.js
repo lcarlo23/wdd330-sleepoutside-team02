@@ -9,6 +9,4 @@ const productsList = new ProductList(category, dataSource, productListElement);
 
 productsList.init();
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateCartCount();
-});
+updateCartCount();

@@ -31,8 +31,5 @@ function cartItemTemplate(item) {
 renderCartContents();
 
 //updateCartCount();
-document.addEventListener("DOMContentLoaded", () => {
-  
-  updateCartCount();
-});
 
+updateCartCount();

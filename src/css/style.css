@@ -265,7 +265,7 @@ button {
 }
 
 /* personal add to cart counter */
-.cart{
+.cart {
   position: relative;
 }
 
@@ -276,12 +276,11 @@ button {
   width: 18px;
   height: 18px;
   background-color: #f0a868;
-  color:red;
+  color: red;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 @media screen and (min-width: 500px) {
   body {
