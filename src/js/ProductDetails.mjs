@@ -1,4 +1,5 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -21,7 +22,9 @@ export default class ProductDetails {
         const cart = getLocalStorage("so-cart") || [];
         cart.push(this.product);
         setLocalStorage("so-cart", cart);
+        updateCartCount();
     }
+   
     renderProductDetails(product) {
         const brand = document.querySelector(".product-detail h3");
         const name = document.querySelector(".product-detail h2");
@@ -41,3 +44,5 @@ export default class ProductDetails {
         button.dataset.id = product.Id;
     }
 }
+
+updateCartCount();
