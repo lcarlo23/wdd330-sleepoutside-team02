@@ -29,6 +29,7 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
+// Render a list (such as cards) from a template
 export function renderListWithTemplate(
   templateFn,
   parentElement,
@@ -42,6 +43,39 @@ export function renderListWithTemplate(
 
   const newList = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, newList.join(''));
+}
+
+// Render elements from template (such as headers and footers)
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  parentElement.innerHTML = template;
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+// Load template file
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  const template = await response.text();
+  return template;
+}
+
+// Load header and footer from templates
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../public/partials/header.html");
+  const footerTemplate = await loadTemplate("../public/partials/footer.html");
+
+  const header = document.getElementById('main-header');
+  const footer = document.getElementById('main-footer');
+
+  renderWithTemplate(headerTemplate, header);
+  renderWithTemplate(footerTemplate, footer);
 }
 
 // cart count 
