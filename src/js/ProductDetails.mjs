@@ -54,6 +54,12 @@ export default class ProductDetails {
         image.src = product.Images.PrimaryExtraLarge;
         image.alt = product.Name;
         image.loading = "eager";
+        image.srcset = `
+            ${product.Images.PrimarySmall} 80w,
+            ${product.Images.PrimaryMedium} 160w,
+            ${product.Images.PrimaryLarge} 320w,
+            ${product.Images.PrimaryExtraLarge} 600w`;
+        image.sizes = "(max-width: 600px) 100vw, 600px";
         color.textContent = product.Colors.ColorName;
         description.innerHTML = product.DescriptionHtmlSimple;
         button.dataset.id = product.Id;
