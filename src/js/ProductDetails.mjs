@@ -24,7 +24,7 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cart);
         updateCartCount();
     }
-   
+
     renderProductDetails(product) {
         const brand = document.querySelector(".product-detail h3");
         const name = document.querySelector(".product-detail h2");
