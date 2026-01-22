@@ -20,6 +20,13 @@ function productCardTemplate(product) {
         <a href="/product_pages/?product=${product.Id}">
             <img
                 src="${product.Images.PrimaryLarge}"
+                srcset="
+                ${product.Images.PrimarySmall} 80w,
+                ${product.Images.PrimaryMedium} 160w,
+                ${product.Images.PrimaryLarge} 320w,
+                ${product.Images.PrimaryExtraLarge} 600w"
+                sizes="(max-width: 600px) 100vw, 600px"
+                alt="${product.NameWithoutBrand}"
             />
             <h3 class="card__brand">${product.Brand.Name}</h3>
             <h2 class="card__name">${product.NameWithoutBrand}</h2>
