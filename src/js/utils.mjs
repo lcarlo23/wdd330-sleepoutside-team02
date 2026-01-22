@@ -68,8 +68,8 @@ export async function loadTemplate(path) {
 
 // Load header and footer from templates
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../public/partials/header.html");
-  const footerTemplate = await loadTemplate("../public/partials/footer.html");
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
 
   const header = document.getElementById('main-header');
   const footer = document.getElementById('main-footer');
