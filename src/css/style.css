@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -331,6 +331,29 @@ footer {
   padding-right: 0.5rem;
   white-space: nowrap;
 }
+
+.cart-card {
+  display: grid;
+  grid-template-columns: 25% auto 15%;
+  font-size: var(--small-font);
+  align-items: center;
+  position: relative;
+}
+
+.cart-card__remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.cart-card__remove:hover {
+  color: red;
+}
+
 
 /* Home Categories */
 .categories {
