@@ -24,7 +24,7 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cart);
         updateCartCount();
     }
-   
+
     renderProductDetails(product) {
         const brand = document.querySelector(".product-detail h3");
         const name = document.querySelector(".product-detail h2");
@@ -34,11 +34,23 @@ export default class ProductDetails {
         const description = document.querySelector(".product__description");
         const button = document.getElementById("addToCart");
 
+        price.innerHTML = `<p class="product-card__price">$${product.FinalPrice}</p>`;
+
+        if (product.FinalPrice < product.SuggestedRetailPrice) {
+            const discount = (product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice * 100;
+            price.innerHTML = `
+        <p class="discount-tag">${Math.round(discount)}% OFF</p>
+        <p class="product-card__discount">
+            <span class="discount-price">$${product.FinalPrice}</span>
+            <span class="original-price">$${product.SuggestedRetailPrice}</span>
+        </p>
+        `
+        }
+
         brand.textContent = product.Brand.Name;
         name.textContent = product.NameWithoutBrand;
         image.src = product.Image;
         image.alt = product.Name;
-        price.textContent = `$ ${product.FinalPrice}`;
         color.textContent = product.Colors.ColorName;
         description.innerHTML = product.DescriptionHtmlSimple;
         button.dataset.id = product.Id;
