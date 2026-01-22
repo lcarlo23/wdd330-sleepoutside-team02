@@ -26,6 +26,7 @@ export default class ProductDetails {
     }
 
     renderProductDetails(product) {
+        const title = document.querySelector("title");
         const brand = document.querySelector(".product-detail h3");
         const name = document.querySelector(".product-detail h2");
         const image = document.querySelector(".product-detail img");
@@ -34,10 +35,12 @@ export default class ProductDetails {
         const description = document.querySelector(".product__description");
         const button = document.getElementById("addToCart");
 
+        title.textContent = product.Brand.Name + " | " + product.NameWithoutBrand;
         brand.textContent = product.Brand.Name;
         name.textContent = product.NameWithoutBrand;
-        image.src = product.Image;
+        image.src = product.Images.PrimaryExtraLarge;
         image.alt = product.Name;
+        image.loading = "eager";
         price.textContent = `$ ${product.FinalPrice}`;
         color.textContent = product.Colors.ColorName;
         description.innerHTML = product.DescriptionHtmlSimple;
