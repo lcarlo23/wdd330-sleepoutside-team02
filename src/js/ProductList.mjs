@@ -5,9 +5,12 @@ import { renderListWithTemplate } from "./utils.mjs";
 string for each of the templates needed. Add a function for a productCardTemplate(product). 
 You can use the current HTML in the /index.html file as your starting point.*/
 function productCardTemplate(product) {
+  // Fix the path: change "../images" to "../public/images"
+  const fixedImagePath = product.Image.replace("../images", "../public/images");
+
   return `<li class="product-card">
     <a href="product_pages/?product=${product.Id}">
-      <img src="${product.Image}" alt="${product.Brand.Name}">
+      <img src="${fixedImagePath}" alt="${product.Brand.Name}">
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
