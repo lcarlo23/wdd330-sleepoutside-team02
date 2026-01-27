@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -99,7 +99,8 @@ p {
   color: var(--tertiary-color);
 }
 
-button {
+button,
+.checkout-button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
@@ -108,6 +109,7 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .divider {
@@ -192,14 +194,14 @@ button {
 }
 
 .product-card__discount {
-  background-color: red;
+  background-color: var(--secondary-color);
   color: white;
   display: flex;
   justify-content: space-between;
 }
 
 .discount-tag {
-  color: red;
+  color: var(--secondary-color);
   font-weight: 900;
   width: 100%;
   margin: 0;
@@ -278,7 +280,7 @@ button {
   height: 1rem;
   border-radius: 1rem;
   background-color: #f0a868;
-  color: red;
+  color: var(--secondary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,6 +334,14 @@ footer {
   white-space: nowrap;
 }
 
+.checkout-button {
+  display: block;
+  grid-area: 2/3/3/4;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
@@ -351,7 +361,7 @@ footer {
 }
 
 .cart-card__remove:hover {
-  color: red;
+  color: var(--secondary-color);
 }
 
 /* Home Categories */
