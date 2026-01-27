@@ -18,9 +18,7 @@ export default class CheckoutProcess {
     }
 
     calculateItemSubTotal() {
-        this.itemTotal = this.list.reduce((acc, item) => {
-            return acc + item.FinalPrice;
-        }, 0);
+        this.itemTotal = this.list.reduce((acc, item) => acc + item.FinalPrice, 0);
     }
 
     calculateOrderTotal() {
@@ -40,7 +38,7 @@ export default class CheckoutProcess {
         const shipping = document.querySelector(`${this.selector} #shipping`);
         const total = document.querySelector(`${this.selector} #order-total`);
 
-        subtotal.textContent = `$${this.itemTotal.toFixed(2)}`;
+        subtotal.textContent = `$ ${this.itemTotal.toFixed(2)}`;
         tax.textContent = `$ ${this.tax.toFixed(2)}`;
         shipping.textContent = `$ ${this.shipping.toFixed(2)}`;
         total.textContent = `$ ${this.orderTotal.toFixed(2)}`;

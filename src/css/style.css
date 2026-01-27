@@ -419,6 +419,7 @@ form {
     width: 50%;
     border: 1px solid black;
     text-align: right;
+    padding: 1rem;
 
     span {
       display: inline-block;
