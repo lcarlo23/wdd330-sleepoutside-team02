@@ -21,4 +21,16 @@ export default class ExternalServices {
     const data = await convertToJson(response);
     return data.Result;
   }
+
+  async checkout(form) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    };
+
+    return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
+  }
 }
