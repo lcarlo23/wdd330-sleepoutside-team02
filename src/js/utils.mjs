@@ -95,3 +95,35 @@ export function updateCartCount() {
     cartCountEl.style.display = "none";
   }
 }
+
+// popup function for alerts
+export function alertMessage(message, scroll = true) {
+  const error = typeof message === "string" ? [message] : Object.values(message);
+  const main = document.querySelector("main");
+
+  error.forEach(err => {
+    const div = document.createElement("p");
+    const p = document.createElement("span");
+    const close = document.createElement("span");
+
+    div.classList.add("alert-box");
+    close.classList.add("close-alert");
+
+    p.textContent = err;
+    close.textContent = "X";
+
+    div.addEventListener("click", (e) => {
+      if (e.target.classList.contains("close-alert")) {
+        div.remove();
+      }
+    });
+
+    div.append(p);
+    div.append(close);
+    main.prepend(div);
+  })
+
+  if (scroll) {
+    window.scrollTo(0, 0);
+  };
+}
