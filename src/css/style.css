@@ -102,7 +102,7 @@ p {
 button,
 .checkout-button {
   padding: 0.5em 2em;
-  background-color: var(--secondary-color);
+  background-color: red;
   color: white;
   margin: auto;
   display: block;
@@ -432,4 +432,20 @@ form {
   button {
     margin-top: 1rem;
   }
+}
+
+/* Alerts Styling */
+
+.alert-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: red;
+  color: white;
+}
+
+.close-alert {
+  cursor: pointer;
 }
