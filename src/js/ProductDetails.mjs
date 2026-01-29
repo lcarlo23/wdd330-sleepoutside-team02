@@ -20,10 +20,18 @@ export default class ProductDetails {
     }
     addToCart() {
         const cart = getLocalStorage("so-cart") || [];
+        const counter = document.querySelector(".cart-count");
+        const cartIcon = document.querySelector(".cart a svg");
+
         cart.push(this.product);
         setLocalStorage("so-cart", cart);
         updateCartCount();
+        counter.classList.add("count-animate");
+        setTimeout(() => counter.classList.remove("count-animate"), 500)
+        cartIcon.classList.add("cart-animate");
+        setTimeout(() => cartIcon.classList.remove("cart-animate"), 500)
         alertMessage(`${this.product.Name} has been added to the cart!`);
+
     }
 
     renderProductDetails(product) {
