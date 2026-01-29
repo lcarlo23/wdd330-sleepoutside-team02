@@ -12,12 +12,12 @@ order.init();
 button.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const form = document.querySelector("form");
+  const form = document.forms[0];
+
+  form.reportValidity();
 
   if (form.checkValidity()) {
     order.checkout();
-  } else {
-    form.reportValidity();
   }
 });
 

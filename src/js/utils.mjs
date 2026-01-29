@@ -95,3 +95,74 @@ export function updateCartCount() {
     cartCountEl.style.display = "none";
   }
 }
+
+// popup function for alerts
+export function alertMessage(message, scroll = true) {
+  const error = typeof message === "string" ? [message] : Object.values(message);
+  const main = document.querySelector("main");
+
+  error.forEach(err => {
+    const div = document.createElement("p");
+    const p = document.createElement("span");
+    const close = document.createElement("span");
+
+    div.classList.add("alert-box");
+    close.classList.add("close-alert");
+
+    p.textContent = err;
+    close.textContent = "X";
+
+    div.addEventListener("click", (e) => {
+      if (e.target.classList.contains("close-alert")) {
+        div.remove();
+      }
+    });
+
+    div.append(p);
+    div.append(close);
+    main.prepend(div);
+  })
+
+  if (scroll) {
+    window.scrollTo(0, 0);
+  };
+}
+
+export async function quickLook(id, dataSource) {
+  const modal = document.getElementById("quick-look");
+  const product = await dataSource.findProductById(id);
+
+  const image = product.Images.PrimaryLarge;
+  const name = product.Name;
+  const description = product.DescriptionHtmlSimple;
+
+  populateModal(image, name, description, modal);
+  modal.showModal();
+}
+
+function populateModal(image, name, description, modal) {
+
+  modal.textContent = "";
+
+  const img = document.createElement("img");
+  const h4 = document.createElement("h4");
+  const p = document.createElement("p");
+  const close = document.createElement("p");
+
+  close.classList.add("close-btn");
+
+  img.src = image;
+  img.alt = name;
+  h4.textContent = name;
+  p.innerHTML = description;
+  close.textContent = "X";
+
+  modal.append(img);
+  modal.append(h4);
+  modal.append(p);
+  modal.append(close);
+
+  close.addEventListener("click", () => {
+    modal.close();
+  })
+}
