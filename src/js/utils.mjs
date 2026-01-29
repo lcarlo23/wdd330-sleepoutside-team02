@@ -127,3 +127,42 @@ export function alertMessage(message, scroll = true) {
     window.scrollTo(0, 0);
   };
 }
+
+export async function quickLook(id, dataSource) {
+  const modal = document.getElementById("quick-look");
+  const product = await dataSource.findProductById(id);
+
+  const image = product.Images.PrimaryLarge;
+  const name = product.Name;
+  const description = product.DescriptionHtmlSimple;
+
+  populateModal(image, name, description, modal);
+  modal.showModal();
+}
+
+function populateModal(image, name, description, modal) {
+
+  modal.textContent = "";
+
+  const img = document.createElement("img");
+  const h4 = document.createElement("h4");
+  const p = document.createElement("p");
+  const close = document.createElement("p");
+
+  close.classList.add("close-btn");
+
+  img.src = image;
+  img.alt = name;
+  h4.textContent = name;
+  p.innerHTML = description;
+  close.textContent = "X";
+
+  modal.append(img);
+  modal.append(h4);
+  modal.append(p);
+  modal.append(close);
+
+  close.addEventListener("click", () => {
+    modal.close();
+  })
+}

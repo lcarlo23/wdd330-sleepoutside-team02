@@ -100,7 +100,7 @@ p {
 }
 
 button,
-.checkout-button {
+.link-button {
   padding: 0.5em 2em;
   background-color: red;
   color: white;
@@ -170,6 +170,27 @@ button,
   color: var(--dark-grey);
 }
 
+.product-list .link-button {
+  color: white;
+  font-weight: 700;
+}
+
+.quick-look-icon {
+  background: none;
+  color: var(--dark-grey);
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  margin: 0;
+  align-self: flex-end;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.quick-look-icon svg {
+  pointer-events: none;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -177,6 +198,8 @@ button,
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card h2,
@@ -334,7 +357,7 @@ footer {
   white-space: nowrap;
 }
 
-.checkout-button {
+.link-button {
   display: block;
   grid-area: 2/3/3/4;
   width: 100%;
@@ -447,5 +470,26 @@ form {
 }
 
 .close-alert {
+  cursor: pointer;
+}
+
+/* Modal Styling */
+#quick-look:open {
+  margin: auto;
+  border: none;
+  padding: 2rem;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.1rem;
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
 }
