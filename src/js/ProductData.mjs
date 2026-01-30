@@ -1,20 +1,41 @@
 // src/js/ProductData.mjs
 export default class ProductData {
   constructor(category) {
-    this.category = category;
-    this.path = "/src/public/json/" + category + ".json";
-  }
-  // Inside ProductData.mjs constructor or getData method
+  const normalized = category.toLowerCase().replace("sleepingbags", "sleeping-bags");
+  this.category = normalized;
+
+  this.pathMap = {
+    tents: "../public/json/tents.json",
+    backpacks: "../public/json/backpacks.json",
+    "sleeping-bags": "../public/json/sleeping-bags.json",
+    hammocks: "../public/json/hammocks.json",
+  };
+}
+
   async getData() {
-    // If your index.html is in /src/product_pages/, you need to go up to src:
-    const response = await fetch("../public/json/tents.json");
+    const url = this.pathMap[this.category];
+    if (!url) throw new Error(`Unknown category: ${this.category}`);
+
+    const response = await fetch(url);
     const data = await response.json();
-    return data;
+
+    // sleeping-bags.json has a Result array
+    if (Array.isArray(data) && data[0]?.Result) {
+      return data[0].Result;
+    }
+    if (data?.Result) {
+      return data.Result;
+    }
+    if (Array.isArray(data)) {
+      return data;
+    }
+
+    throw new Error("No product data found in JSON");
   }
 
-  async findProductById(id) {
+  async getProductById(id) {
     const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    return products.find((p) => p.Id.toLowerCase() === id.toLowerCase());
   }
 }
 
