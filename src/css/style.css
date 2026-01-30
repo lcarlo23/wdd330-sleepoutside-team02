@@ -27,57 +27,43 @@ body {
   color: var(--dark-grey);
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem;
-}
-
-p {
-  padding: 0.75rem;
+#main-header {
+  position: relative; /* establish positioning context */
 }
 
 .logo {
   display: flex;
-  margin-left: 25px;
+  align-items: center;
+  margin-left: 20px;
   height: 90px;
-  width: 300px;
-  overflow: hidden;
-  font-size: 30px;
-  text-align: right;
   font-family: var(--font-headline);
 }
-  .logo img {
-    /*enlarge logo image*/
-    scale: 1.5;
-    width: 90px;
-    height: 90px;
-    margin-right: 0.25em; 
-    margin-left: 0.25em;  
+
+.logo img {
+  height: 90px;
+  margin-right: 0.25em;
 }
+
 .logo a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-left: 25px;
   font-size: 44px;
   text-decoration: none;
   color: var(--font-body);
 }
-/* cart formatting */
 
 .cart {
-  width: 90px;
-  height: 90px;
-  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0; /* or right: 20px for spacing */
 }
 
 .cart svg {
-  /*enlarge cart icon*/
-  width: 90px;
-  height: 90px;
+  height: 70px;
   fill: var(--dark-grey);
+  margin: 10px;
+  transition: fill 0.3s;
 }
+
 .cart:hover svg {
   fill: gray;
 }
@@ -94,6 +80,27 @@ p {
   height: auto;
   display: block;
 }
+/* class="logo logo--square",*/
+.logo--square {
+  position: absolute;
+  /*move the upper border to bottom center of hero image*/
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5em 1em;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  font-size: 50px;
+}
+/*image inside logo*/
+.logo--square img {
+  height: 100px;
+  margin-right: 0.25em;
+}
+/* end hero section */
+
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -119,7 +126,6 @@ button {
   line-height: 1.3;
   width: 100%;
   background-color: var(--dark-grey);
-  
 }
 .mission p {
   margin: 0 auto;
@@ -131,6 +137,64 @@ button {
   width: 100%;
   text-align: center;
 }
+/*Categories section*/
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+.categories h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 44px;
+  font-weight: bold;
+  color: blue;
+}
+.categories .category {
+  /* display the items below h2*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /*separate items with gap*/
+  gap: 70px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.categories .category a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  /*separate items with gap*/
+  text-decoration: none;
+  color: var(--dark-grey);
+  font-size: 1.2rem;
+  border: 2px solid var(--light-grey);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.categories .category a img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .products {
   margin-top: 2rem;
   padding: 1rem;
@@ -267,6 +331,10 @@ button {
 }
 
 footer {
-  font-size: var(--small-font);
+  font-size: var(--large-font);
+  text-align: center;
+  background-color: var(--tertiary-color);
+  color: white;
   padding: 1em;
 }
+
