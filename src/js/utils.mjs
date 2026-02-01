@@ -1,18 +1,20 @@
 // utils.mjs
 // load header and footer partials
 
-export async function loadHeaderFooter() {
-  const header = await fetch(
-    "/wdd330-sleepoutside-team02/src/public/partials/header.html",
-  );
-  const headerText = await header.text();
-  document.querySelector("#main-header").innerHTML = headerText;
+// utils.mjs
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
 
-  const footer = await fetch(
-    "/wdd330-sleepoutside-team02/src/public/partials/footer.html",
-  );
-  const footerText = await footer.text();
-  document.querySelector("#main-footer").innerHTML = footerText;
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+export async function loadHeaderFooter() {
+  const header = await fetch("/src/public/partials/header.html");
+  const footer = await fetch("/src/public/partials/footer.html");
+  document.querySelector("#main-header").innerHTML = await header.text();
+  document.querySelector("#main-footer").innerHTML = await footer.text();
 }
 
 // helper to read query parameters from the URL
