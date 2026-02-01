@@ -1,16 +1,18 @@
 // src/js/ProductData.mjs
 export default class ProductData {
   constructor(category) {
-  const normalized = category.toLowerCase().replace("sleepingbags", "sleeping-bags");
-  this.category = normalized;
+    const normalized = category
+      .toLowerCase()
+      .replace("sleepingbags", "sleeping-bags");
+    this.category = normalized;
 
-  this.pathMap = {
-    tents: "../public/json/tents.json",
-    backpacks: "../public/json/backpacks.json",
-    "sleeping-bags": "../public/json/sleeping-bags.json",
-    hammocks: "../public/json/hammocks.json",
-  };
-}
+    this.pathMap = {
+      tents: "../public/json/tents.json",
+      backpacks: "../public/json/backpacks.json",
+      "sleeping-bags": "../public/json/sleeping-bags.json",
+      hammocks: "../public/json/hammocks.json",
+    };
+  }
 
   async getData() {
     const url = this.pathMap[this.category];
@@ -35,7 +37,11 @@ export default class ProductData {
 
   async getProductById(id) {
     const products = await this.getData();
-    return products.find((p) => p.Id.toLowerCase() === id.toLowerCase());
+    return products.find((p) => {
+      const productId = p.Id || p.id; // handle both cases
+      return (
+        productId && productId.toString().toLowerCase() === id.toLowerCase()
+      );
+    });
   }
 }
-
