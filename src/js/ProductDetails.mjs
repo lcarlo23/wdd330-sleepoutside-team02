@@ -3,6 +3,12 @@ import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
+    this.dataSource = dataSource;// wdd330-sleepoutside-team02/src/js/ProductDetails.mjs
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+
+export default class ProductDetails {
+  constructor(productId, dataSource) {
+    this.productId = productId;
     this.dataSource = dataSource;
     this.product = null;
   }
@@ -49,3 +55,4 @@ export default class ProductDetails {
     button.dataset.id = product.Id;
   }
 }
+
