@@ -13,12 +13,12 @@ function productTemplate(product) {
       <h3>${brand}</h3>
       <p>${name}</p>
       <p class="product-card__price">$${price}</p>
-      <a href="../product_pages/index.html?product=${product.Id}" class="btn">View Details</a>
+      <a href="../product_pages/index.html?product=${product.Id || product.id}" class="btn">View Details</a>
+      <button class="add-to-cart" data-id="${product.Id || product.id}">Add to Cart</button>
     </li>
   `;
 }
-
-export default class ProductList {
+  export default class ProductList {
   constructor(category, dataSource, listElement) {
     this.category = category;
     this.dataSource = dataSource;
