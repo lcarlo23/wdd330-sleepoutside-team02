@@ -53,8 +53,13 @@ body {
 
 .cart {
   position: absolute;
-  top: 0;
-  right: 0; /* or right: 20px for spacing */
+  top: 10px;
+  right: 20px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .cart svg {
@@ -66,6 +71,31 @@ body {
 
 .cart:hover svg {
   fill: gray;
+}
+.cart-count { 
+  position: relative; 
+  top: -60px;  
+  right: 20px; 
+  background-color: red; 
+  color: white; 
+  font-size: 0.75rem; 
+  padding: 2px 6px; 
+  border-radius: 50%; 
+  z-index: 10; 
+}
+#clear-cart {
+  position: absolute;
+  top: 30px;
+  right: 160px;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: var(--small-font);
+}
+#clear-cart:hover {
+  background-color: var(--tertiary-color);
 }
 /* end cart formatting */
 /* hero section */
@@ -337,4 +367,84 @@ footer {
   color: white;
   padding: 1em;
 }
+.checkout-form {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 2px solid var(--light-grey);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.checkout-form h2 {
+  font-family: var(--font-headline);
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+.checkout-form fieldset {
+  border: 1px solid var(--light-grey);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+.checkout-form legend {
+  font-weight: bold;
+  color: var(--tertiary-color);
+  margin-bottom: 0.5rem;
+}
+.checkout-form label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: var(--small-font);
+  color: var(--dark-grey);
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: var(--font-base);
+}
+.checkout-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: var(--large-font);
+}
+
+.checkout-summary b {
+  color: var(--secondary-color);
+}
+.error {
+  background-color: #ffe0e0;
+  color: #b00000;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #b00000;
+  border-radius: 4px;
+}
+.error {
+  background-color: #ffe0e0;
+  color: #b00000;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #b00000;
+  border-radius: 4px;
+}
+#checkoutSubmit {
+  margin-top: 1rem;
+}
+
+#checkoutSubmit:hover {
+  background-color: var(--tertiary-color);
+}
+
 
