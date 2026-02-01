@@ -1,31 +1,62 @@
-// src/js/cart.js
-import { getLocalStorage } from "./utils.mjs";
+//cart.js
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+} from "./utils.mjs";
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  if (cartItems) {
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+loadHeaderFooter().then(() => {
+  updateCartCount();
+  displayCartItems();
+
+  const clearBtn = document.getElementById("clear-cart");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      setLocalStorage("so-cart", []);
+      updateCartCount();
+      displayCartItems();
+    });
   }
+});
+
+function updateCartCount() {
+  const cart = getLocalStorage("so-cart") || [];
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const badge = document.getElementById("cart-count");
+  if (badge) badge.textContent = count;
 }
 
-function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
+function displayCartItems() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartContainer = document.getElementById("cart-items");
+  if (!cartContainer) return;
 
-  return newItem;
+  cartContainer.innerHTML = "";
+
+  if (cartItems.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  let total = 0;
+  cartItems.forEach((item) => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+
+    const li = document.createElement("li");
+    li.className = "cart-card divider";
+    li.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" />
+      <h2>${item.name}</h2>
+      <p>qty: ${item.quantity}</p>
+      <p>$${item.price.toFixed(2)}</p>
+    `;
+    cartContainer.appendChild(li);
+  });
+
+  const totalElement = document.createElement("div");
+  totalElement.className = "cart-total";
+  totalElement.innerHTML = `<h2>Total: $${total.toFixed(2)}</h2>`;
+  cartContainer.appendChild(totalElement);
 }
 
-renderCartContents();
