@@ -531,3 +531,8 @@ form {
     transform: rotate(-15deg);
   }
 }
+
+.alert-list {
+  text-align: center;
+  font-weight: bold;
+}
