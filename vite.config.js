@@ -3,20 +3,21 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  // Ensure the base matches your GitHub repo name
   base: "/wdd330-sleepoutside-team02/",
-  // 1. Vite will now look inside 'src' for your files
+
+  // 1. Vite uses 'src' as the root for finding index.html and assets
   root: "src/",
 
-  // 2. Explicitly tell Vite that your static assets are in 'src/public'
-  // Files here will be served at the root '/' (e.g., /images/banner.jpg)
-  publicDir: "public",
-
   build: {
-    outDir: "../docs", // 3. Output to 'docs' for GitHub Pages
+    // 2. Output to '../docs' relative to the 'src' root.
+    // This places the final build files directly in the 'docs' folder for GH Pages.
+    outDir: "../docs",
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        // Only list HTML entry points here
+        // 3. Since 'root' is 'src/', Vite is already looking inside that folder.
+        // We resolve paths relative to the current file (__dirname) to be safe.
         main: resolve(__dirname, "src/index.html"),
         cart: resolve(__dirname, "src/cart/index.html"),
         checkout: resolve(__dirname, "src/checkout/index.html"),
