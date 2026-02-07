@@ -12,7 +12,7 @@ export default defineConfig({
   publicDir: "public",
 
   build: {
-    outDir: "../dist",
+    outDir: "../docs", // 3. Output to 'docs' for GitHub Pages
     emptyOutDir: true,
     rollupOptions: {
       input: {
