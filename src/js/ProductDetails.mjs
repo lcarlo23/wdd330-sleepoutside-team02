@@ -1,3 +1,4 @@
+// wdd330-sleepoutside-team02/src/js/ProductDetails.mjs
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
@@ -14,6 +15,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
   }
+
   addToCart() {
     const cart = getLocalStorage("so-cart") || [];
     cart.push(this.product);
@@ -29,13 +31,6 @@ export default class ProductDetails {
       ".product-detail .product-detail__description",
     );
     const image = document.querySelector(".product-detail__image");
-    const color = document.querySelector(".product-detail__color");
-    const button = document.getElementById("addToCart");
-
-    brand.textContent = product.Brand.Name;
-    name.textContent = product.NameWithoutBrand;
-    price.textContent = `$${product.FinalPrice}`;
-
     // ✅ Safe image assignment
     if (product.Image) {
       // relative path from index.html in src/product_pages
@@ -45,7 +40,11 @@ export default class ProductDetails {
       image.src = "../public/images/tents/default.jpg"; // fallback
       image.alt = "Image not available";
     }
-
+    const color = document.querySelector(".product-detail__color");
+    const button = document.getElementById("addToCart");
+    brand.textContent = product.Brand.Name;
+    name.textContent = product.NameWithoutBrand;
+    price.textContent = `$${product.FinalPrice}`;
     color.textContent = product.Colors.ColorName;
     description.innerHTML = product.DescriptionHtmlSimple;
     button.dataset.id = product.Id;

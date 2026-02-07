@@ -1,24 +1,47 @@
 // src/js/ProductData.mjs
-function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
-
 export default class ProductData {
   constructor(category) {
-    this.category = category;
-    this.path = "/src/public/json/" + category + ".json";
+    const normalized = category
+      .toLowerCase()
+      .replace("sleepingbags", "sleeping-bags");
+    this.category = normalized;
+
+    this.pathMap = {
+      tents: "../public/json/tents.json",
+      backpacks: "../public/json/backpacks.json",
+      "sleeping-bags": "../public/json/sleeping-bags.json",
+      hammocks: "../public/json/hammocks.json",
+    };
   }
-  getData() {
-    return fetch(this.path)
-      .then(convertToJson)
-      .then((data) => data);
+
+  async getData() {
+    const url = this.pathMap[this.category];
+    if (!url) throw new Error(`Unknown category: ${this.category}`);
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    // sleeping-bags.json has a Result array
+    if (Array.isArray(data) && data[0]?.Result) {
+      return data[0].Result;
+    }
+    if (data?.Result) {
+      return data.Result;
+    }
+    if (Array.isArray(data)) {
+      return data;
+    }
+
+    throw new Error("No product data found in JSON");
   }
-  async findProductById(id) {
+
+  async getProductById(id) {
     const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    return products.find((p) => {
+      const productId = p.Id || p.id; // handle both cases
+      return (
+        productId && productId.toString().toLowerCase() === id.toLowerCase()
+      );
+    });
   }
 }

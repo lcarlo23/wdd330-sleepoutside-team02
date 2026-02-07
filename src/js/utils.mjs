@@ -1,38 +1,25 @@
 // utils.mjs
-// wrapper for querySelector...returns matching element
-export function qs(selector, parent = document) {
-  return parent.querySelector(selector);
-}
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
+// load header and footer partials
 
-// retrieve data from localstorage
+// utils.mjs
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-// save data to local storage
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// set a listener for both touchend and click
-export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
-    event.preventDefault();
-    callback();
-  });
-  qs(selector).addEventListener("click", callback);
+
+export async function loadHeaderFooter() {
+  const header = await fetch("/src/public/partials/header.html");
+  const footer = await fetch("/src/public/partials/footer.html");
+  document.querySelector("#main-header").innerHTML = await header.text();
+  document.querySelector("#main-footer").innerHTML = await footer.text();
 }
-/*Make a new function in the utils.mjs file called renderListWithTemplate 
-and export it. It should receive five (5) arguments: templateFn, parentElement,
- list, position, and clear.*/
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = true,
-) {
-  if (clear) parentElement.innerHTML = "";
-  const htmlStrings = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+
+// helper to read query parameters from the URL
+
+export function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
 }
