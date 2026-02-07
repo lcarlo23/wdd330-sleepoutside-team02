@@ -3,6 +3,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/wdd330-sleepoutside-team02/",
   // 1. Vite will now look inside 'src' for your files
   root: "src/",
 
