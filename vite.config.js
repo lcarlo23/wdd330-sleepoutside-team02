@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     // 2. Output to '../docs' relative to the 'src' root.
     // This places the final build files directly in the 'docs' folder for GH Pages.
-    outDir: "../docs",
+    outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
       input: {
